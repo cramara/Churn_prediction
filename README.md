@@ -2,13 +2,13 @@
 
 ## Installation
 
-### Créer un environnement virtuel
+### Create a virtal environment
 
 ```bash
 python -m venv venv
 ```
 
-### Activer l'environnement virtuel
+### Activate the virtual environment
 
 **Sur Windows :**
 ```bash
@@ -20,9 +20,15 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 
-### Installer les dépendances
+### Install dependencies
 
 ```bash
 pip install -r requirements.txt
+```
+
+### Run the app
+
+```bash
+streamlit run app_streamlit.py
 ```
 
