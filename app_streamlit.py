@@ -462,7 +462,7 @@ with st.expander("Prediction"):
             
             else:  # Batch prediction
                 st.markdown("### Batch Prediction from CSV")
-                st.info("Upload a CSV file with customer data (same format as training data, without 'Churn' column)")
+                st.info("Upload a CSV file with customer data (same format as training data)")
                 
                 uploaded_pred = st.file_uploader("Upload CSV for prediction", type=["csv"], key="prediction_csv")
                 
@@ -557,7 +557,7 @@ if has_churn_column:
             
             # Metrics
             st.subheader("Model Performance")
-            st.text(classification_report(y_test, y_pred, digits=3))
+            st.code(classification_report(y_test, y_pred, digits=3))
             auc = roc_auc_score(y_test, y_proba)
             st.write(f"ROC AUC : {auc:.3f}")
             
