@@ -1,13 +1,11 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from io import StringIO
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score, roc_curve, precision_recall_curve
+from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score, roc_curve
 import joblib
 
 
@@ -75,15 +73,14 @@ def preprocess(df, verbose=True):
     if "Churn" in df.columns:
         df["Churn"] = df["Churn"].map({"No": 0, "Yes": 1})
 
-    # Check the numerical/categorical columns
+    # Check the numeric/categorical columns
+    categorical_cols = df.select_dtypes(include="object").columns
     if verbose:
-        categorical_cols = df.select_dtypes(include="object").columns
         numeric_cols = df.select_dtypes(include=["int64", "float64"]).columns
-        st.write("Colonnes catégorielles :", list(categorical_cols))
-        st.write("Colonnes numériques :", list(numeric_cols))
+        st.write("Categorical columns:", list(categorical_cols))
+        st.write("Numeric columns:", list(numeric_cols))
 
     # OneHot Encoding
-    categorical_cols = df.select_dtypes(include="object").columns
     df = pd.get_dummies(df, columns=categorical_cols, drop_first=True)
 
     return df
